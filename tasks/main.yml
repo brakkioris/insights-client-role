@@ -33,7 +33,7 @@
   insights_register:
     state: present
   become: true
-  
+
 - name: Change permissions of Insights Config directory so that Insights System ID can be read
   file:
     path: /etc/insights-client
@@ -51,11 +51,12 @@
     state: directory
     recurse: true
     path: /etc/ansible/facts.d
+    mode: a+rx
   become: true
 
 - name: Install custom insights fact
   copy:
     src: insights.fact
     dest: /etc/ansible/facts.d
-    mode: a+x
+    mode: a+rx
   become: true
